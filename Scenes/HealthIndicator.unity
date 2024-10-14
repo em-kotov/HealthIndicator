@@ -1251,6 +1251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthText: {fileID: 77249338}
+  _playerHealth: {fileID: 1353623630}
 --- !u!114 &1353623634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1264,6 +1265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 4509153}
+  _playerHealth: {fileID: 1353623630}
 --- !u!114 &1353623635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1277,6 +1279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 16583929}
+  _playerHealth: {fileID: 1353623630}
 --- !u!1 &1455686290
 GameObject:
   m_ObjectHideFlags: 0

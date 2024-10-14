@@ -5,12 +5,13 @@ using System.Collections;
 public class PlayerHealthSmoothSliderDisplay : HealthDisplay
 {
     [SerializeField] private Slider _healthSlider;
+    [SerializeField] private PlayerHealth _playerHealth;
 
     private Coroutine _smoothValueMoveCoroutine;
 
     private void Awake()
     {
-        Health = GetComponent<PlayerHealth>();
+        Health = _playerHealth;
         _healthSlider.interactable = false;
     }
 
@@ -29,7 +30,7 @@ public class PlayerHealthSmoothSliderDisplay : HealthDisplay
     {
         if (_smoothValueMoveCoroutine != null)
             StopCoroutine(_smoothValueMoveCoroutine);
-        
+
         _smoothValueMoveCoroutine = StartCoroutine(SmoothValueMove(_healthSlider.value, targetValue));
     }
 

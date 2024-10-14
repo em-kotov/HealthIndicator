@@ -1,19 +1,17 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(InputHandler))]
 public class PlayerHealth : Health
 {
-    private InputHandler _inputHandler;
+    [SerializeField] private InputHandler _inputHandler;
+
     private float _maxPoints = 100;
-    private float _addedPoints = 10;
 
     public event Action LostPoints;
     public event Action HasDied;
 
     private void Awake()
     {
-        _inputHandler = GetComponent<InputHandler>();
         Points = _maxPoints;
     }
 
@@ -31,19 +29,29 @@ public class PlayerHealth : Health
 
     private void HandleHit()
     {
-        LoosePoints();
+        float lostPoints = 10;
+        float minPoints = 0;
+
+        LoosePoints(lostPoints, minPoints);
         LostPoints?.Invoke();
-        HasPoints();
+        BecomeDead();
     }
 
     private void HandleHeal()
     {
-        AddPoints(_addedPoints, _maxPoints);
+        float addedPoints = 10;
+
+        AddPoints(addedPoints, _maxPoints);
     }
 
-    private void HasPoints()
+    private bool IsDead()
     {
-        if (Points <= 0)
+        return Points <= 0;
+    }
+
+    private void BecomeDead()
+    {
+        if (IsDead())
             HasDied?.Invoke();
     }
 }

@@ -1,16 +1,16 @@
 using UnityEngine;
 using TMPro;
 
-[RequireComponent(typeof(PlayerHealth))]
 public class PlayerHealthTextDisplay : HealthDisplay
 {
     [SerializeField] private TextMeshProUGUI _healthText;
+    [SerializeField] private PlayerHealth _playerHealth;
 
     private string _fullHealthText = " / 100";
 
     private void Awake()
     {
-        Health = GetComponent<PlayerHealth>();
+        Health = _playerHealth;
     }
 
     override public void DisplayHealthPoints(float value)

@@ -12,10 +12,10 @@ public class Health : MonoBehaviour
         InvokePointsChanged();
     }
 
-    public virtual void LoosePoints()
+    public virtual void LoosePoints(float lostPoints, float minPoints)
     {
-        float lostPoints = 10;
-        float minPoints = 0;
+        if (lostPoints < 0)
+            return;
 
         Points -= lostPoints;
 
@@ -27,6 +27,9 @@ public class Health : MonoBehaviour
 
     public virtual void AddPoints(float addedPoints, float maxPoints)
     {
+        if (addedPoints < 0)
+            return;
+
         Points += addedPoints;
 
         if (Points > maxPoints)

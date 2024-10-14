@@ -3,11 +3,12 @@ using UnityEngine.UI;
 
 public class PlayerHealthSliderDisplay : HealthDisplay
 {
-   [SerializeField] private Slider _healthSlider;
+    [SerializeField] private Slider _healthSlider;
+    [SerializeField] private PlayerHealth _playerHealth;
 
     private void Awake()
     {
-        Health = GetComponent<PlayerHealth>();
+        Health = _playerHealth;
         _healthSlider.interactable = false;
     }
 
@@ -17,6 +18,6 @@ public class PlayerHealthSliderDisplay : HealthDisplay
         float maxSliderValue = 1;
         float maxPoints = 100;
 
-        _healthSlider.value = Mathf.Clamp(value/maxPoints, minSliderValue, maxSliderValue);
+        _healthSlider.value = Mathf.Clamp(value / maxPoints, minSliderValue, maxSliderValue);
     }
 }
