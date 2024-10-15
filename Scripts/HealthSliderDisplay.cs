@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthSliderDisplay : HealthDisplay
+public class HealthSliderDisplay : HealthDisplay
 {
     [SerializeField] private Slider _healthSlider;
-    [SerializeField] private PlayerHealth _playerHealth;
+    [SerializeField] private Health _health;
 
     private void Awake()
     {
-        Health = _playerHealth;
+        Health = _health;
         _healthSlider.interactable = false;
     }
 

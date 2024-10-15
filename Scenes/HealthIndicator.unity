@@ -1185,30 +1185,18 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1353623631}
-  - component: {fileID: 1353623630}
   - component: {fileID: 1353623632}
   - component: {fileID: 1353623633}
   - component: {fileID: 1353623634}
   - component: {fileID: 1353623635}
+  - component: {fileID: 1353623636}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1353623630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353623629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae3f388a3aeeb44279bd2dee9713c41f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1353623631
 Transform:
   m_ObjectHideFlags: 0
@@ -1251,7 +1239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthText: {fileID: 77249338}
-  _playerHealth: {fileID: 1353623630}
+  _health: {fileID: 1353623636}
 --- !u!114 &1353623634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1265,7 +1253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 4509153}
-  _playerHealth: {fileID: 1353623630}
+  _health: {fileID: 1353623636}
 --- !u!114 &1353623635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1279,7 +1267,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 16583929}
-  _playerHealth: {fileID: 1353623630}
+  _health: {fileID: 1353623636}
+--- !u!114 &1353623636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353623629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31eae68d9d1f04b1fa882dec7abbbd31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputHandler: {fileID: 1353623632}
+  _maxPoints: 100
+  _addedPoints: 10
+  _lostPoints: 10
 --- !u!1 &1455686290
 GameObject:
   m_ObjectHideFlags: 0
