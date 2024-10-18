@@ -1,29 +1,13 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
-public class HealthSmoothSliderDisplay : HealthDisplay
+public class SmoothHealthSliderDisplay : HealthSliderDisplay
 {
-    [SerializeField] private Slider _healthSlider;
-    [SerializeField] private Health _health;
-
     private Coroutine _smoothValueMoveCoroutine;
-
-    private void Awake()
-    {
-        Health = _health;
-        _healthSlider.interactable = false;
-    }
 
     override public void DisplayHealthPoints(float value)
     {
-        float minSliderValue = 0;
-        float maxSliderValue = 1;
-        float maxPoints = 100;
-
-        float targetValue = Mathf.Clamp(value / maxPoints, minSliderValue, maxSliderValue);
-
-        ActivateSmoothValueMove(targetValue);
+        ActivateSmoothValueMove(GetClampedValue(value));
     }
 
     private void ActivateSmoothValueMove(float targetValue)

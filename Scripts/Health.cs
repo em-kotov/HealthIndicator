@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private InputHandler _inputHandler;
     [SerializeField, Range(0f, 100f)] private float _maxPoints = 100;
     [SerializeField, Range(0f, 100f)] private float _addedPoints = 10;
     [SerializeField, Range(0f, 100f)] private float _lostPoints = 10;
@@ -11,36 +10,20 @@ public class Health : MonoBehaviour
     private float _minPoints = 0;
     private float _points;
 
-    public event Action<float> PointsChanged;
-
-    private void Awake()
-    {
-        _points = _maxPoints;
-    }
+    public Action<float> PointsChanged;
 
     private void Start()
     {
+        _points = _maxPoints;
         InvokePointsChanged();
     }
 
-    private void OnEnable()
-    {
-        _inputHandler.IsHitPressed += HandleHit;
-        _inputHandler.IsHealPressed += HandleHeal;
-    }
-
-    private void OnDisable()
-    {
-        _inputHandler.IsHitPressed -= HandleHit;
-        _inputHandler.IsHealPressed -= HandleHeal;
-    }
-
-    private void HandleHit()
+    public void HandleHit()
     {
         LoosePoints(_lostPoints);
     }
 
-    private void HandleHeal()
+    public void HandleHeal()
     {
         AddPoints(_addedPoints);
     }
@@ -50,7 +33,7 @@ public class Health : MonoBehaviour
         if (IsNegative(lostPoints))
             return;
 
-        _points = GetPointsInRange(_points - lostPoints);
+        _points = GetClampedPoints(_points - lostPoints);
         InvokePointsChanged();
     }
 
@@ -59,11 +42,11 @@ public class Health : MonoBehaviour
         if (IsNegative(addedPoints))
             return;
 
-        _points = GetPointsInRange(_points + addedPoints);
+        _points = GetClampedPoints(_points + addedPoints);
         InvokePointsChanged();
     }
 
-    private float GetPointsInRange(float points)
+    private float GetClampedPoints(float points)
     {
         return Mathf.Clamp(points, _minPoints, _maxPoints);
     }
