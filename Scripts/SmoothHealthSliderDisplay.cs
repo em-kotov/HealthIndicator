@@ -15,7 +15,7 @@ public class SmoothHealthSliderDisplay : HealthSliderDisplay
         if (_smoothValueMoveCoroutine != null)
             StopCoroutine(_smoothValueMoveCoroutine);
 
-        _smoothValueMoveCoroutine = StartCoroutine(SmoothValueMove(_healthSlider.value, targetValue));
+        _smoothValueMoveCoroutine = StartCoroutine(SmoothValueMove(HealthSlider.value, targetValue));
     }
 
     private IEnumerator SmoothValueMove(float startValue, float targetValue)
@@ -28,10 +28,10 @@ public class SmoothHealthSliderDisplay : HealthSliderDisplay
         {
             passedTime += Time.deltaTime;
             clampedTime = Mathf.Clamp01(passedTime / targetTime);
-            _healthSlider.value = Mathf.Lerp(startValue, targetValue, clampedTime);
+            HealthSlider.value = Mathf.Lerp(startValue, targetValue, clampedTime);
             yield return null;
         }
 
-        _healthSlider.value = targetValue;
+        HealthSlider.value = targetValue;
     }
 }

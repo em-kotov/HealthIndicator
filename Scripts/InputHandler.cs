@@ -7,8 +7,8 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private Button _hitButton;
     [SerializeField] private Button _healButton;
 
-    public Action HitPressed;
-    public Action HealPressed;
+    public event Action HitPressed;
+    public event Action HealPressed;
 
     private void OnEnable()
     {

@@ -3,16 +3,16 @@ using UnityEngine.UI;
 
 public class HealthSliderDisplay : HealthDisplay
 {
-    [SerializeField] protected Slider _healthSlider;
+    [SerializeField] protected Slider HealthSlider;
 
     protected void Awake()
     {
-        _healthSlider.interactable = false;
+        HealthSlider.interactable = false;
     }
 
     override public void DisplayHealthPoints(float value)
     {
-        _healthSlider.value = GetClampedValue(value);
+        HealthSlider.value = GetClampedValue(value);
     }
 
     protected float GetClampedValue(float value)

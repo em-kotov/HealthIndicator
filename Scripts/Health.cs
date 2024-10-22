@@ -3,52 +3,35 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField, Range(0f, 100f)] private float _maxPoints = 100;
-    [SerializeField, Range(0f, 100f)] private float _addedPoints = 10;
-    [SerializeField, Range(0f, 100f)] private float _lostPoints = 10;
-
-    private float _minPoints = 0;
     private float _points;
 
-    public Action<float> PointsChanged;
+    public event Action<float> PointsChanged;
 
-    private void Start()
+    public void SetCurrentHealth(float points)
     {
-        _points = _maxPoints;
+        _points = points;
         InvokePointsChanged();
     }
 
-    public void HandleHit()
-    {
-        LoosePoints(_lostPoints);
-    }
-
-    public void HandleHeal()
-    {
-        AddPoints(_addedPoints);
-    }
-
-    private void LoosePoints(float lostPoints)
+    public void LoosePoints(float lostPoints, float minPoints, float maxPoints)
     {
         if (IsNegative(lostPoints))
             return;
 
-        _points = GetClampedPoints(_points - lostPoints);
-        InvokePointsChanged();
+        SetCurrentHealth(GetClampedPoints(_points - lostPoints, minPoints, maxPoints));
     }
 
-    private void AddPoints(float addedPoints)
+    public void AddPoints(float addedPoints, float minPoints, float maxPoints)
     {
         if (IsNegative(addedPoints))
             return;
 
-        _points = GetClampedPoints(_points + addedPoints);
-        InvokePointsChanged();
+        SetCurrentHealth(GetClampedPoints(_points + addedPoints, minPoints, maxPoints));
     }
 
-    private float GetClampedPoints(float points)
+    private float GetClampedPoints(float points, float minPoints, float maxPoints)
     {
-        return Mathf.Clamp(points, _minPoints, _maxPoints);
+        return Mathf.Clamp(points, minPoints, maxPoints);
     }
 
     private bool IsNegative(float value)
